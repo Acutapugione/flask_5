@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    
+    <ul>
+        {% for item in items %}
+        <li>
+            <p>
+                {% for handler in handlers %}
+                    <a href="{{ url_for(handler.__name__, id = item.id) }}">{{handler.__name__.split('_')[1]}}</a>
+                {% endfor %}
+                <div>{{ item.__dict__ }}</div>
+            </pa>
+        </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

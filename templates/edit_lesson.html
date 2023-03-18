@@ -1,0 +1,38 @@
+{% block content %}
+<form action="" method="post">
+    <p>
+        <label for="name">Тема уроку</label>
+        <input type="text" name="name" placeholder="Введіть тему уроку" value="{{lesson.name}}">
+    </p>
+    <p>
+        <label for="teacher">Викладач</label>
+        <input type="text" name="teacher" placeholder="Введіть ім'я викладача" value="{{lesson.teacher}}">
+    </p>
+    
+
+    {% for stud in lesson.students %}
+    <div name="students">
+        <p>#{{ stud.id }}</p>
+        <p>{{ stud.name }}</p>
+    </div>
+    {% endfor %}
+    </p>
+    <p>
+        <button type="submit">Submit</button>
+    </p>
+</form>
+
+<hr>
+<h3>Студенти: {{ count }}</h3>
+<form method="post" action="{{url_for('student_create')}}">
+    <p>
+        <textarea name="name" placeholder="Student" cols="60" rows="5"></textarea>
+    </p>
+    <input type="hidden" name="lesson_id" value="{{ lesson.id }}">
+    <p>
+        <button type="submit">Create student</button>
+    </p>
+</form>
+{% endblock %}
+
+
